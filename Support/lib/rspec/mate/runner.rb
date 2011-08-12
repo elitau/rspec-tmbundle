@@ -1,6 +1,13 @@
+require 'switch_command'
+
 module RSpec
   module Mate
     class Runner
+      def run_alternate_file(stdout, filepath)
+        other = RSpec::Mate::SwitchCommand.new.twin(filepath)
+        run(stdout, {:files => [other]})
+      end
+      
       def run_files(stdout, options={})
         files = ENV['TM_SELECTED_FILES'].scan(/'(.*?)'/).flatten.map do |path|
           File.expand_path(path)
