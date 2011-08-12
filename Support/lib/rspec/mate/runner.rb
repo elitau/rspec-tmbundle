@@ -1,4 +1,4 @@
-require 'switch_command'
+require File.join(File.dirname(__FILE__), *%w[switch_command])
 
 module RSpec
   module Mate
